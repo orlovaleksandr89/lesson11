@@ -1,16 +1,20 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-// import Subtitle from "../../common/typografy/subtitle";
 
-const HomeWorkComponent = ({ user, onLogout }) => {
-    console.log(onLogout);
-
-    return (
+const HomeWorkComponent = ({ user, onLogout, onLogin, isAuth }) => {
+    return isAuth ? (
         <div>
             Hello {user.name}.{" "}
             <button className="btn btn-danger" onClick={onLogout}>
                 Logout
+            </button>
+        </div>
+    ) : (
+        <div>
+            Please{" "}
+            <button className="btn btn-success" onClick={onLogin}>
+                Login
             </button>
         </div>
     );

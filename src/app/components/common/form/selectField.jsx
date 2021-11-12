@@ -59,4 +59,4 @@ SelectField.propTypes = {
     options: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
-export default SelectField;
+export default React.memo(SelectField);
