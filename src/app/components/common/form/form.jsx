@@ -33,12 +33,23 @@ const FormComponent = ({
         }
         onSubmit(data);
     };
+    // Фокус при нажатии Enter
+    const handleKeyDown = useCallback((e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            const form = e.target.form;
+            const indexField = Array.prototype.indexOf.call(form, e.target);
+            form.elements[indexField + 1].focus();
+        }
+    }, []);
+
     useEffect(() => {
         if (Object.keys(data).length > 0) validate(data);
     }, [data]);
 
     const isValid = Object.keys(errors).length === 0;
 
+    // Переиспользуемая форма
     const clonedElements = React.Children.map(children, (child) => {
         const childType = typeof child.type;
         let config = {};
@@ -50,7 +61,8 @@ const FormComponent = ({
                 ...child.props,
                 onChange: handleChange,
                 value: data[child.props.name] || "",
-                error: errors[child.props.name]
+                error: errors[child.props.name],
+                onKeyDown: handleKeyDown
             };
         }
 

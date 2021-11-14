@@ -12,7 +12,7 @@ function SimpleComponent() {
         <CardWrapper>
             <SmallTitle>Home work</SmallTitle>
             <Divider />
-            <ComponentWithAuth />
+            <ComponentWithAuth hello={" 'hello from props' "} />
         </CardWrapper>
     );
 }
